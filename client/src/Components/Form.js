@@ -31,44 +31,44 @@ export default function Form({ form }) {
   // Library for Form Data
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = data => {
-    console.log(data);
     fetch("http://localhost:3001/address", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ data }),
-    });
-    // Send to server
-  };
-  return (
-    <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <form onSubmit={handleSubmit(onSubmit)} className={classes.form} noValidate>
-          <TextField
-            //Reference for useForm and field name
-            inputRef={register({ required: true })}
-            name="address"
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="address"
-            label="Address"
-            autoComplete="address"
-            autoFocus
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
+    })
+      )
+  // Send to server
+};
+return (
+  <Container component="main" maxWidth="xs">
+    <div className={classes.paper}>
+      <form onSubmit={handleSubmit(onSubmit)} className={classes.form} noValidate>
+        <TextField
+          //Reference for useForm and field name
+          inputRef={register({ required: true })}
+          name="address"
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="address"
+          label="Address"
+          autoComplete="address"
+          autoFocus
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+        >
+          Sign In
           </Button>
-        </form>
-      </div>
-    </Container>
-  );
+      </form>
+    </div>
+  </Container>
+);
 }
