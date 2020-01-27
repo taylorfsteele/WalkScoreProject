@@ -1,5 +1,5 @@
 const googleMapsClient = require('../node_modules/@google/maps').createClient({
-    key: 'AIzaSyADKMidjrKApBjB9OdRQ-NclizKk-dMzcs',
+    key: 'APIKEY,
     Promise: Promise
 });
 
