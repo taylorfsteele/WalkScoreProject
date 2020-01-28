@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
@@ -21,54 +21,52 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-async function loadAddress() {
-  const res = await fetch("http://localhost:3001/address");
-  const address = await res.json();
-}
-
 export default function Form({ form }) {
   const classes = useStyles();
-  // Library for Form Data
   const { register, handleSubmit, watch, errors } = useForm();
+
   const onSubmit = data => {
-    fetch("http://localhost:3001/address", {
+    fetch("http://localhost:3001/test", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ data }),
     })
-      )
+      .then(response => response.json())
+      .then(jsondata => console.log(jsondata))
+      .catch(err => console.log(err));
+  };
   // Send to server
-};
-return (
-  <Container component="main" maxWidth="xs">
-    <div className={classes.paper}>
-      <form onSubmit={handleSubmit(onSubmit)} className={classes.form} noValidate>
-        <TextField
-          //Reference for useForm and field name
-          inputRef={register({ required: true })}
-          name="address"
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          id="address"
-          label="Address"
-          autoComplete="address"
-          autoFocus
-        />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-        >
-          Sign In
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <div className={classes.paper}>
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.form} noValidate>
+          <TextField
+            //Reference for useForm and field name
+            inputRef={register({ required: true })}
+            name="address"
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="address"
+            label="Address"
+            autoComplete="address"
+            autoFocus
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign In
           </Button>
-      </form>
-    </div>
-  </Container>
-);
+        </form>
+      </div>
+    </Container>
+  );
 }
