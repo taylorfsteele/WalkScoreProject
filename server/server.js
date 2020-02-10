@@ -1,11 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3001;
-<<<<<<< HEAD
 const fetch = require("node-fetch");
-=======
-const googleapi = require("./controllers/googleapi");
->>>>>>> d0a82d5b643127e1c75436ad54d2f4f6abed2243
 const bodyParser = require("body-parser");
 require("dotenv").config();
 const admin = require("firebase-admin");
@@ -47,7 +43,6 @@ app.get("/address", async (req, res) => {
   res.send(latLng);
 });
 
-<<<<<<< HEAD
 const handleApiCall = async endpoint => {
   const res = await fetch(endpoint);
   let data = await res.json();
@@ -84,12 +79,4 @@ app.post("/address", async (req, res) => {
   res.send(["Sent!"]);
 });
 
-=======
-app.post("/address", async (req, res) => {
-  console.log(req.body.data.address);
-  googleapi.handleGoogleMaps(req, res);
-  res.send(res);
-});
-
->>>>>>> d0a82d5b643127e1c75436ad54d2f4f6abed2243
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
