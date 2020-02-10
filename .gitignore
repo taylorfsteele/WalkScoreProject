@@ -23,3 +23,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+client/.firebaserc
+client/.gitignore
+client/build/
+client/firebase.json
+server/.env
+server/firebase-debug.log
