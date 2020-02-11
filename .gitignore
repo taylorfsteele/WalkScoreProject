@@ -31,3 +31,6 @@ client/build/
 client/firebase.json
 server/.env
 server/firebase-debug.log
+client/.eslintrc.js
+server/.eslintrc.json
+client/.firebase/
