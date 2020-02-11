@@ -9,7 +9,7 @@ let serviceAccount = require(process.env.DB_KEY_PATH);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://walk-score-portf-1580150892683.firebaseio.com",
+  databaseURL: process.env.DB_URL,
 });
 
 let db = admin.firestore();
@@ -20,8 +20,6 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
-
-let latLng = [];
 
 app.get("/address", async (req, res) => {
   //TODO: Change to listen for collection===user
@@ -37,10 +35,8 @@ app.get("/address", async (req, res) => {
       );
     });
     console.log(scores);
+    res.send(scores);
   });
-
-  //todo: Get from DB
-  res.send(latLng);
 });
 
 const handleApiCall = async endpoint => {

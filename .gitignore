@@ -34,3 +34,5 @@ server/firebase-debug.log
 client/.eslintrc.js
 server/.eslintrc.json
 client/.firebase/
+client/.eslintrc.json
+client/.prettierrc.json
