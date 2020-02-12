@@ -4,8 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import { useState } from 'react';
-import ScoreCard from './ScoreCard';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -23,8 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Form({ scoresList, updateScoresList }) {
-  const [lat, setLat] = useState(0);
+export default function Form() {
   const classes = useStyles();
   const { register, handleSubmit, watch, errors } = useForm();
 
@@ -73,13 +70,10 @@ export default function Form({ scoresList, updateScoresList }) {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Submit
           </Button>
         </form>
       </div>
-      {scoresList.map((scoresFunction, i) => (
-        <ScoreCard key={i} scoresFunction={scoresFunction} />
-      ))}
     </Container>
   );
 }

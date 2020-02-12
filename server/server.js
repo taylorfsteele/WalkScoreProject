@@ -27,12 +27,12 @@ app.get("/address", async (req, res) => {
     let scores = [];
     //Listens for any changes to the collection
     querySnapshot.forEach(function(doc) {
-      scores.push(
+      scores.push([
         doc.data().walkScore,
         doc.data().bikeScore,
         doc.data().formattedAddress,
         doc.data().lastCalledTime.toDate(),
-      );
+      ]);
     });
     console.log(scores);
     res.send(scores);
