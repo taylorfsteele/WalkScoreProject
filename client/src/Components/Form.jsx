@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -21,9 +22,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Form() {
+export default function Form({ updateScoresList }) {
   const classes = useStyles();
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async data => {
     try {
@@ -35,9 +36,9 @@ export default function Form() {
         body: JSON.stringify({ data }),
       });
       const jsonResponse = await response.json();
-      console.log(jsonResponse);
-      //updateScoresList(jsonResponse)
+      updateScoresList(jsonResponse);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
     }
   };
@@ -51,7 +52,7 @@ export default function Form() {
           noValidate
         >
           <TextField
-            //Reference for useForm and field name
+            // Reference for useForm and field name
             inputRef={register({ required: true })}
             name="address"
             variant="outlined"
@@ -77,3 +78,11 @@ export default function Form() {
     </Container>
   );
 }
+
+Form.propTypes = {
+  updateScoresList: PropTypes.arrayOf(PropTypes.object),
+};
+
+Form.defaultProps = {
+  updateScoresList: [],
+};
