@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 async function loadScores(updateCallback) {
-  const res = await fetch('http://localhost:3001/address');
+  const res = await fetch('http://localhost:3001/scores');
   const scores = await res.json();
   updateCallback(scores);
 }

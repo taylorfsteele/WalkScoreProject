@@ -38,7 +38,6 @@ export default function Form({ updateScoresList }) {
       const jsonResponse = await response.json();
       updateScoresList(jsonResponse);
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.log(error);
     }
   };
